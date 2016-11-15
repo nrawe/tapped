@@ -6,7 +6,7 @@ This represents an attempt to write an elegant, simple testing framework for PHP
 
 ## Another Testing Framework, Really?
 
-Yes, and I feel your pain but bear with me. I've worked with TDD, BDD in XUnit, Gherkin, XSpec and more. Over the course of 7 years of professional development I've tried to reconcile pragmatism with theory on the nature of testing. I've seen the work of people in similar boats who have tried to wonderful, simple things, and incredible peices of work of a highly engineered nature. They have pushed boundaries, but none of them have fit my needs.
+Yes, and I feel your pain but bear with me. I've worked with TDD, BDD in XUnit, Gherkin, XSpec and more. Over the course of 7 years of professional development I've tried to reconcile pragmatism with theory on the nature of testing. I've seen the work of people in similar boats who have tried to do wonderful, simple things, and incredible peices of work of a highly engineered nature. They have pushed boundaries, but none of them have fit my needs.
 
 And so, after much deliberation, I've created this one. It's goal is to leverage the advantages of PHP7 and the general environment for development in PHP to create a simple, fast, and elegant testing system. The realisation of this goal will be a holistic system which I can apply with equal ease to command line, script, API and Web Application development. I share this in the hopes of progressing that goal, and that it can be useful to others.
 
@@ -33,13 +33,13 @@ You can then `$ composer test`. Easy, peasy.
 
 ## Defining Tests
 
-Tapped always looks for a folder called `tests` in it's current working directory. It loads composer, and then performs an isolated require on the files ending `Tests.php`. A test file, at it's simplest, looks as follows.
+Tapped always looks for a folder called `tests` in it's current working directory. It loads composer, and then performs an isolated require on the files ending `Test.php`. A test file, at it's simplest, looks as follows.
 
 ```php
 <?php
+// tests/MyTest.php
 
 use function Rawebone\Tapped\test;
-
 
 test('Tapped can perform a basic assertion', function ($expect) {
     $expect(1)->toEqual(1)->when('The framework is working');
