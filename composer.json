@@ -1,0 +1,25 @@
+{
+    "name": "nrawe/tapped",
+    "description": "A simple, elegant testing framework",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick Rawe",
+            "email": "nrawe@reapit.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Rawebone\\Tapped\\": "src/"
+        },
+        "files": [
+            "src/Functions/interface.php",
+            "src/Functions/comparisons.php",
+            "src/Functions/protocol.php"
+        ]
+    },
+    "bin": ["bin/tapped.php"]
+}
