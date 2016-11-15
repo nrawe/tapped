@@ -1,7 +1,7 @@
 # Tapped
 > It's testing, Jim, but not as we know it
 
-This represents an attempt to write an elegant, simple testing framework for PHP. It is based on Test Anything Protocol, and leverages the advances in PHP7.
+This represents an attempt to write an elegant, simple testing framework for PHP. It is based on [Test Anything Protocol](https://testanything.org/tap-version-13-specification.html), and leverages the advances in PHP7.
 
 
 ## Another Testing Framework, Really?
