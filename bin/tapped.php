@@ -26,11 +26,15 @@ try {
     );
     
     // Execute the tests.
-    kernel()->runTests(
+    kernel()->run(
         environment()->testFiles()
     );
 
 } catch (BailOutError $bail) {
-    // Handle framework startup issues
+    // This is a specific error message, so the stack is irrelevant.
     bailOut($bail->getMessage());
+
+} catch (Throwable $t) {
+    // This is a general error, so the stack is important.
+    bailOut((string)$t);
 }

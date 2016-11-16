@@ -15,11 +15,11 @@ use function Rawebone\Tapped\Protocol\{
 class Kernel
 {
     /**
-     * The Environment instance for finding files.
-     * 
-     * @var Environment
+     * The Comparisons which have been loaded for the framework.
+     *
+     * @var Comparator
      */
-    protected $environment;
+    protected $comparator;
 
     /**
      * The Extensions which have been loaded for the framework.
@@ -62,9 +62,9 @@ class Kernel
     /**
      * Creates a new instance of the Kernel.
      */
-    public function __construct(Environment $environment, Extensions $extensions)
+    public function __construct(Comparator $comparator, Extensions $extensions)
     {
-        $this->environment = $environment;
+        $this->comparator = $comparator;
         $this->extensions = $extensions;
         $this->hasProtocolBeenWritten = false;
         $this->tests = 0;
@@ -142,22 +142,19 @@ class Kernel
     /**
      * Runs all of the tests that can be found in the tests folder.
      */
-    public function runTests()
+    public function run(array $tests)
     {
         $this->extensions->boot();
 
-        try {
-            $this->loadTestFiles();
-            $this->finishUp();
+        $runner = static function ($file) {
+            require_once $file;
+        };
 
-        } catch (BailOutError $bail) {
-            // This is a specific error message, so the stack is irrelevant.
-            bailOut($bail->getMessage());
-
-        } catch (Throwable $t) {
-            // This is a general error, so the stack is important
-            bailOut((string)$t->getMessage());
+        foreach ($tests as $test) {
+            $runner($test);
         }
+
+        $this->finishUp();
 
         $this->extensions->shutdown();
     }
@@ -212,17 +209,6 @@ class Kernel
             directive('tests ' . $this->tests);
             directive('pass  ' . $this->passes);
             directive('fail  ' . $this->fails);
-        }
-    }
-
-    protected function loadTestFiles()
-    {
-        $runner = function (string $file) {
-            require_once $file;
-        };
-
-        foreach ($this->environment->testFiles() as $test) {
-            $runner($test);
         }
     }
 
