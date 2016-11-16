@@ -66,6 +66,10 @@ class Comparator
     public function registerMany(array $comparisons)
     {
         foreach ($comparisons as $comparison) {
+            if (!$comparison instanceof Comparison) {
+                throw new BailOutError('Invalid comparison provided.');
+            }
+
             $this->register($comparison);
         }
     }
