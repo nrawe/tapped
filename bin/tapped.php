@@ -4,14 +4,14 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Rawebone\Tapped\BailOutError;
 use function Rawebone\Tapped\Protocol\bailOut;
-use function Rawebone\Tapped\Harness\{kernel, comparator, extensions, environment};
+use function Rawebone\Tapped\Harness\{kernel, comparisons, extensions, environment};
 
 try {
     // Initialise the testing environment.
     environment(getcwd() . DIRECTORY_SEPARATOR . 'tests');
 
     // Load in the default comparisons which ship with the Framework.
-    comparator()->registerMany(
+    comparisons()->registerMany(
         require_once __DIR__ . '/../configuration/comparisons.php'
     );
 
@@ -29,7 +29,7 @@ try {
     extensions()->boot();
 
     // Register the comparisons exposed by the extensions.
-    extensions()->comparisons(comparator());
+    extensions()->comparisons(comparisons());
 
     // Execute the tests.
     kernel()->run(
