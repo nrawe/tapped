@@ -13,7 +13,7 @@ class Extensions extends Extension
      *
      * @var Extension[]
      */ 
-    protected $loaded;
+    protected $loaded = [];
 
     /**
      * Registers a new extension for use.
