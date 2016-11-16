@@ -89,7 +89,7 @@ class Kernel
     /**
      * Marks a failure.
      */
-    public function fail(string $description)
+    public function fail(string $description = '')
     {
         $this->incrementFailCount();
 
@@ -99,7 +99,7 @@ class Kernel
     /**
      * Marks a success.
      */
-    public function pass(string $description)
+    public function pass(string $description = '')
     {
         $this->incrementPassCount();
 
@@ -109,7 +109,7 @@ class Kernel
     /**
      * Marks a skipped test.
      */
-    public function skip(string $description)
+    public function skip(string $description = '')
     {
         $this->incrementFailCount();
 
@@ -119,7 +119,7 @@ class Kernel
     /**
      * Marks a test that is still todo.
      */
-    public function todo(string $description)
+    public function todo(string $description = '')
     {
         $this->incrementFailCount();
 
@@ -129,7 +129,7 @@ class Kernel
     /**
      * Marks a critical situation and cancels testing.
      */
-    public function bailOut(string $description)
+    public function bailOut(string $description = '')
     {
         throw new BailOutError($description);
     }
