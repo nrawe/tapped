@@ -9,6 +9,7 @@ namespace Rawebone\Tapped;
  */
 
 use Closure;
+use function Rawebone\Tapped\Harness\kernel;
 
 /**
  * Performs a test.
@@ -32,21 +33,4 @@ function skip(string $description, Closure $test)
 function todo(string $description, Closure $test)
 {
     kernel()->todo($description);
-}
-
-/**
- * Initialises or returns the Kernel which actually runs the tests.
- */
-function kernel(): Kernel
-{
-    static $instance;
-
-    if (! $instance) {
-        $environment = new Environment(getcwd().DIRECTORY_SEPARATOR.'tests');
-        $extensions = new Extensions($environment->extensions());
-        
-        $instance = new Kernel($environment, $extensions);
-    }
-
-    return $instance;
 }

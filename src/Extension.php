@@ -23,6 +23,15 @@ abstract class Extension
     }
 
     /**
+     * This method will be called to register the extension specific
+     * comparisons.  
+     */
+    public function comparisons(Comparator $comparator)
+    {
+        // noop
+    }
+
+    /**
      * This method will be called just before a test is executed.
      */
     public function setup()

@@ -13,20 +13,32 @@ class Extensions extends Extension
      *
      * @var Extension[]
      */ 
-    protected $loaded;
+    protected $loaded = [];
 
     /**
-     * Creates a new instance of the Extensions object.
+     * Registers a new extension for use.
      */
-    public function __construct(array $extensions)
+    public function register(Extension $extension)
     {
-        $this->loaded = $extensions;
+        $this->loaded[] = $extension;
+    }
 
-        $this->validate();
+    /**
+     * Registers many extensions for use.
+     */
+    public function registerMany(array $extensions)
+    {
+        foreach ($extensions as $extension) {
+            if (!$extension instanceof Extension) {
+                throw new BailOutError('Invalid extension provided.');
+            }
+
+            $this->register($extension);
+        }
     }
 
 
-    //region Extension Methods
+    //region Extension Events
 
     /**
      * {@inheritDoc}
@@ -34,6 +46,14 @@ class Extensions extends Extension
     public function boot()
     {
         $this->each(__FUNCTION__);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function comparisons(Comparator $comparator)
+    {
+        $this->each(__FUNCTION__, $comparator);
     }
 
     /**
@@ -72,18 +92,6 @@ class Extensions extends Extension
     {
         foreach ($this->loaded as $extension) {
             call_user_func_array([$extension, $method], $args);
-        }
-    }
-
-    /**
-     * Validates that the user has configured the extensions correctly.
-     */
-    protected function validate()
-    {
-        foreach ($this->loaded as $extension) {
-            if (!$extension instanceof Extension) {
-                throw new BailOutError('Invalid extension configured');
-            }
         }
     }
 

@@ -2,8 +2,6 @@
 
 namespace Rawebone\Tapped;
 
-use function Rawebone\Tapped\Comparisons\comparison;
-
 /**
  * Assertion provides a mechanism for fluently testing a value against
  * another value.
@@ -19,6 +17,13 @@ class Assertion
      * @var string
      */
     protected $comparison;
+
+    /**
+     * The Comparisons that are available.
+     *
+     * @var Comparator
+     */
+    protected $comparator;
 
     /**
      * The description of what the assertion is for.
@@ -51,27 +56,19 @@ class Assertion
     /**
      * Creates a new instance of the Assertion.
      */
-    public function __construct(Kernel $kernel, $subject)
+    public function __construct(Kernel $kernel, Comparator $comparator, $subject)
     {
         $this->kernel = $kernel;
+        $this->comparator = $comparator;
         $this->subject = $subject;
     }
 
     /**
-     * Registers that the value should be compared for equality.
+     * Dynamically call for the comparison.
      */
-    public function toEqual($expectation): Assertion
+    public function __call($name, $args): Assertion
     {
-        return $this->comparison('equals', $expectation);
-    }
-
-
-    /**
-     * Registers that the value should be compared for non-equality.
-     */
-    public function toNotEqual($expectation): Assertion
-    {
-        return $this->comparison('notEquals', $expectation);
+        return $this->comparison($name, $args[0]);
     }
 
     /**
@@ -92,10 +89,11 @@ class Assertion
      */
     public function __destruct()
     {
-        $this->kernel->assertion(
-            comparison($this->subject, $this->expectation, $this->comparison),
-            $this->description
+        $result = $this->comparator->compare(
+            $this->comparison, $this->subject, $this->expectation
         );
+
+        $this->kernel->assertion($result, $this->description);
     }
 
     /**
@@ -103,6 +101,10 @@ class Assertion
      */
     protected function comparison(string $comparison, $expectation): Assertion
     {
+        if (! $this->comparator->has($comparison)) {
+            throw new BailOutError('Unknown comparison ' . $comparison);
+        }
+
         $this->comparison = $comparison;
         $this->expectation = $expectation;
 
