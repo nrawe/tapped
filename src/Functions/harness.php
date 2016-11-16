@@ -2,6 +2,8 @@
 
 namespace Rawebone\Tapped\Harness;
 
+use Rawebone\Tapped\{Kernel, Environment, Extensions, Comparator};
+
 /**
  * Initialises or returns the Kernel which actually runs the tests.
  */
