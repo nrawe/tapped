@@ -144,8 +144,6 @@ class Kernel
      */
     public function run(array $tests)
     {
-        $this->extensions->boot();
-
         $runner = static function ($file) {
             require_once $file;
         };
@@ -155,8 +153,6 @@ class Kernel
         }
 
         $this->finishUp();
-
-        $this->extensions->shutdown();
     }
 
     /**

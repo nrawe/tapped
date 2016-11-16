@@ -25,10 +25,19 @@ try {
         environment()->extensions()
     );
     
+    // Boot all of the extensions.
+    extensions()->boot();
+
+    // Register the comparisons exposed by the extensions.
+    extensions()->comparisons(comparator());
+
     // Execute the tests.
     kernel()->run(
         environment()->testFiles()
     );
+
+    // Shutdown all of the extensions.
+    extensions()->shutdown();
 
 } catch (BailOutError $bail) {
     // This is a specific error message, so the stack is irrelevant.
