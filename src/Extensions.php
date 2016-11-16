@@ -39,6 +39,14 @@ class Extensions extends Extension
     /**
      * {@inheritDoc}
      */
+    public function comparisons(Comparator $comparator)
+    {
+        $this->each(__FUNCTION__, $comparator);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setup()
     {
         $this->each(__FUNCTION__);
