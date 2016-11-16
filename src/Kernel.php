@@ -223,7 +223,7 @@ class Kernel
     protected function makeAssertion(): Closure
     {
         return function ($subject) {
-            return new Assertion($this, $subject);
+            return new Assertion($this, $this->comparator, $subject);
         };
     }
 
