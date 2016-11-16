@@ -10,4 +10,9 @@ class Equals implements Comparison
     {
         return $subject === $expectation;
     }
+
+    public function name()
+    {
+        return 'toEqual';
+    }
 }

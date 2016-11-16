@@ -8,4 +8,9 @@ class DoesNotEqual extends Equals
     {
         return ! parent::compare($subject, $expectation);
     }
+    
+    public function name()
+    {
+        return 'toNotEqual';
+    }
 }
