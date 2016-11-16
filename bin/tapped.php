@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Rawebone\Tapped\BailOutError;
-use function Rawebone\Tapped\{kernel, comparator, extensions, environment};
 use function Rawebone\Tapped\Protocol\bailOut;
+use function Rawebone\Tapped\Harness\{kernel, comparator, extensions, environment};
 
 try {
     // Initialise the testing environment.
@@ -25,7 +25,10 @@ try {
         environment()->extensions()
     );
     
-    kernel()->runTests();
+    // Execute the tests.
+    kernel()->runTests(
+        environment()->testFiles()
+    );
 
 } catch (BailOutError $bail) {
     // Handle framework startup issues
