@@ -16,8 +16,8 @@
             "Rawebone\\Tapped\\": "src/"
         },
         "files": [
+            "src/Functions/harness.php",
             "src/Functions/interface.php",
-            "src/Functions/comparisons.php",
             "src/Functions/protocol.php"
         ]
     },
