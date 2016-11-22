@@ -52,6 +52,11 @@ class Environment
      */
     public function testFiles(): array
     {
+        // Ignore missing test directories
+        if (!is_dir($this->path)) {
+            return [];
+        }
+        
         $directory = new RecursiveDirectoryIterator($this->path);
         $iterator = new RecursiveIteratorIterator($directory);
         $regex = new RegexIterator(
