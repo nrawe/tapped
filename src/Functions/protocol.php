@@ -31,12 +31,12 @@ function bailOut(string $message)
 
 function skip(int $number, string $message)
 {
-    notOk($number, '# SKIP', $message);
+    notOk($number, '# SKIP ' . $message);
 }
 
 function todo(int $number, string $message)
 {
-    notOk($number, '# TODO', $message);
+    notOk($number, '# TODO ' . $message);
 }
 
 function plan(int $tests)
