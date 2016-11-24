@@ -93,7 +93,7 @@ class Assertion
             $this->comparison, $this->subject, $this->expectation
         );
 
-        $this->kernel->assertion($result, $this->description);
+        $this->kernel->assertion($result, $this->description ?? '');
     }
 
     /**
