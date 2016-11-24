@@ -24,7 +24,7 @@ function test(string $description, Closure $test)
  */
 function skip(string $description, Closure $test)
 {
-    kernel()->skip($description);
+    kernel()->skip($description, false);
 }
 
 /**
@@ -32,5 +32,5 @@ function skip(string $description, Closure $test)
  */
 function todo(string $description, Closure $test)
 {
-    kernel()->todo($description);
+    kernel()->todo($description, false);
 }
