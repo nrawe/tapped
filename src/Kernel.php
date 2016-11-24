@@ -109,20 +109,34 @@ class Kernel
     /**
      * Marks a skipped test.
      */
-    public function skip(string $description = '')
+    public function skip(string $description = '', $inline = true)
     {
         $this->incrementFailCount();
 
+        if (!$inline) {
+            directive($description);
+            
+            // Reset the value
+            $description = '';
+        }
+        
         skip($this->incrementTestCount(), $description);
     }
 
     /**
      * Marks a test that is still todo.
      */
-    public function todo(string $description = '')
+    public function todo(string $description = '', $inline = true)
     {
         $this->incrementFailCount();
 
+        if (!$inline) {
+            directive($description);
+            
+            // Reset the value
+            $description = '';
+        }
+        
         todo($this->incrementTestCount(), $description);
     }
 
