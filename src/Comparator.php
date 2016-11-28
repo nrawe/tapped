@@ -80,7 +80,7 @@ class Comparator
     protected function getNameFor(Comparison $comparison): string
     {
         if (method_exists($comparison, 'name')) {
-            return $comparison->name();
+            return lcfirst($comparison->name());
         }
 
         $reflection = new ReflectionClass($comparison);
