@@ -15,8 +15,8 @@ try {
     // Initialise the testing environment.
     environment(getcwd() . DIRECTORY_SEPARATOR . 'tests');
 
-    // Define the mocks for our testing
-    environment()->loadMocks();
+    // Define the fixtures for our testing
+    environment()->loadFixtures();
 
     // Load in the default comparisons which ship with the Framework.
     comparisons()->registerMany(

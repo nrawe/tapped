@@ -50,19 +50,19 @@ class Environment
     /**
      * Loads the mocks for the test harness.
      */
-    public function loadMocks()
+    public function loadFixtures()
     {
-        if (is_file($this->mocksFile())) {
-            require_once $this->mocksFile();
+        if (is_file($this->fixturesFile())) {
+            require_once $this->fixturesFile();
         }
     }
 
     /**
-     * Returns the file which should contain the mocks.
+     * Returns the file which should contain the fixtures.
      */
-    public function mocksFile(): string
+    public function fixturesFile(): string
     {
-        return $this->path . DIRECTORY_SEPARATOR . 'mocks.php';
+        return $this->path . DIRECTORY_SEPARATOR . 'fixtures.php';
     }
 
     /**
