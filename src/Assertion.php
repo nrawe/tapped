@@ -68,7 +68,9 @@ class Assertion
      */
     public function __call($name, $args): Assertion
     {
-        return $this->comparison($name, $args[0]);
+        // The argument here is not forced - this allows us to call methods
+        // such as `toBeTrue()` for better semantics.
+        return $this->comparison($name, $args[0] ?? null);
     }
 
     /**
