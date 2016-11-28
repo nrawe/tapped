@@ -48,6 +48,24 @@ class Environment
     }
 
     /**
+     * Loads the mocks for the test harness.
+     */
+    public function loadMocks()
+    {
+        if (is_file($this->mocksFile())) {
+            require_once $this->mocksFile();
+        }
+    }
+
+    /**
+     * Returns the file which should contain the mocks.
+     */
+    public function mocksFile(): string
+    {
+        return $this->path . DIRECTORY_SEPARATOR . 'mocks.php';
+    }
+
+    /**
      * Returns the files which are deemed to contain tests.
      */
     public function testFiles(): array
