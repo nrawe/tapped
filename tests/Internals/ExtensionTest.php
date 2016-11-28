@@ -6,7 +6,7 @@ use Rawebone\Tapped\Extensions;
 use function Rawebone\Tapped\test;
 
 
-test('Extensions can be registered and executed', function ($expect) {
+test(Extensions::class, function ($expect) {
 
     $extension = new class extends Extension
     {
