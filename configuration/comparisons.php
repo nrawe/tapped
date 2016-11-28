@@ -13,4 +13,5 @@ return [
     new Comparisons\Equals,
     new Comparisons\DoesNotEqual,
     new Comparisons\ObjectTypeOf,
+    new Comparisons\ToBeTrue,
 ];
