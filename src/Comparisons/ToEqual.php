@@ -4,7 +4,7 @@ namespace Rawebone\Tapped\Comparisons;
 
 use Rawebone\Tapped\Comparison;
 
-class Equals implements Comparison
+class ToEqual implements Comparison
 {
     public function compare($subject, $expectation): bool
     {
@@ -32,10 +32,5 @@ class Equals implements Comparison
         }
 
         return true;
-    }
-
-    public function name()
-    {
-        return 'toEqual';
     }
 }

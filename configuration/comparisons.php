@@ -10,8 +10,16 @@
 use Rawebone\Tapped\Comparisons;
 
 return [
-    new Comparisons\Equals,
-    new Comparisons\DoesNotEqual,
-    new Comparisons\ObjectTypeOf,
+    new Comparisons\ToEqual,
+    new Comparisons\NotToEqual,
+    new Comparisons\ToBeAnInstanceOf,
     new Comparisons\ToBeTrue,
+    new Comparisons\ToBeFalse,
+    new Comparisons\ToBeNumeric,
+    new Comparisons\ToBeBoolean,
+    new Comparisons\ToBeString,
+    new Comparisons\ToBeIntegral,
+    new Comparisons\ToBeFloatingPoint,
+    new Comparisons\ToContainKey,
+    new Comparisons\ToContainValue,
 ];
