@@ -53,14 +53,17 @@ class Assertion
      */
     protected $subject;
 
+    protected $call;
+
     /**
      * Creates a new instance of the Assertion.
      */
-    public function __construct(Kernel $kernel, Comparator $comparator, $subject)
+    public function __construct(Kernel $kernel, Comparator $comparator, CallSite $call, $subject)
     {
         $this->kernel = $kernel;
         $this->comparator = $comparator;
         $this->subject = $subject;
+        $this->call = $call;
     }
 
     /**
@@ -124,6 +127,8 @@ class Assertion
             'operator'    => $this->comparison,
             'subject'     => $this->subject,
             'expectation' => $this->expectation,
+            'file'        => $this->call->file(),
+            'line'        => $this->call->line(),
         ];
     }
 }

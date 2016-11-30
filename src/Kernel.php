@@ -234,7 +234,9 @@ class Kernel
     protected function makeAssertion(): Closure
     {
         return function ($subject) {
-            return new Assertion($this, $this->comparator, $subject);
+            return new Assertion(
+                $this, $this->comparator, new CallSite(1), $subject
+            );
         };
     }
 
