@@ -12,6 +12,13 @@ namespace Rawebone\Tapped;
 class Assertion
 {
     /**
+     * The location that started the assertion.
+     *
+     * @var CallSite 
+     */ 
+    protected $call;
+
+    /**
      * The actual comparison that should be made.
      *
      * @var string
@@ -53,8 +60,6 @@ class Assertion
      */
     protected $subject;
 
-    protected $call;
-
     /**
      * Creates a new instance of the Assertion.
      */
@@ -62,8 +67,8 @@ class Assertion
     {
         $this->kernel = $kernel;
         $this->comparator = $comparator;
-        $this->subject = $subject;
         $this->call = $call;
+        $this->subject = $subject;
     }
 
     /**
