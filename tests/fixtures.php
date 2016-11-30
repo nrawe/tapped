@@ -26,6 +26,13 @@ class UnnamedComparison implements Comparison
 }
 
 
+class CountableObject implements Countable
+{
+    public function count()
+    {
+        return 1;
+    }
+}
 
 
 

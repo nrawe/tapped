@@ -22,4 +22,5 @@ return [
     new Comparisons\ToBeFloatingPoint,
     new Comparisons\ToContainKey,
     new Comparisons\ToContainValue,
+    new Comparisons\ToHaveCount,
 ];

@@ -64,4 +64,14 @@ test('Built-in comparisons', function ($expect) {
         ->toContainValue(4)
         ->when('Array values can be checked for having a value')
     ;
+
+    $expect([1, 2, 3, 4, 5])
+        ->toHaveCount(5)
+        ->when('Arrays can be counted')
+    ;
+
+    $expect(new CountableObject)
+        ->toHaveCount(1)
+        ->when('Objects implementing Countable can be counted')
+    ;
 });
