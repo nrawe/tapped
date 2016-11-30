@@ -21,5 +21,8 @@
             "src/Functions/protocol.php"
         ]
     },
-    "bin": ["bin/tapped"]
+    "bin": ["bin/tapped"],
+    "scripts": {
+        "tap": "bin/tapped | faucet"
+    }
 }
