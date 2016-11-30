@@ -58,3 +58,14 @@ function blank()
 {
     write();
 }
+
+function yaml(array $params)
+{
+    $spacer = str_repeat(' ', 4);
+
+    write($spacer, '---');
+    foreach ($params as $key => $value) {
+        write($spacer, trim($key) . ':', var_export($value, true));
+    }
+    write($spacer, '...');
+}

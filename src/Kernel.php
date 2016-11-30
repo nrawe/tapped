@@ -4,7 +4,7 @@ namespace Rawebone\Tapped;
 
 use Closure;
 use function Rawebone\Tapped\Protocol\{
-    directive, version, ok, notOk, skip, todo, plan, blank, bailOut
+    directive, version, ok, notOk, skip, todo, plan, blank, bailOut, yaml
 };
 
 /**
@@ -77,10 +77,11 @@ class Kernel
     /**
      * Records the result of an assertion.
      */
-    public function assertion(bool $result, string $description)
+    public function assertion(bool $result, string $description, array $diagnostics)
     {
         if (! $result) {
             $this->fail($description);
+            $this->diagnostics($diagnostics);
         } else {
             $this->pass($description);
         }
@@ -235,6 +236,11 @@ class Kernel
         return function ($subject) {
             return new Assertion($this, $this->comparator, $subject);
         };
+    }
+
+    protected function diagnostics(array $params)
+    {
+        yaml($params);
     }
 
     //endregion

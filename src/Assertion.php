@@ -95,7 +95,9 @@ class Assertion
             $this->comparison, $this->subject, $this->expectation
         );
 
-        $this->kernel->assertion($result, $this->description ?? '');
+        $this->kernel->assertion(
+            $result, $this->description ?? '', $this->diagnostics()
+        );
     }
 
     /**
@@ -111,5 +113,17 @@ class Assertion
         $this->expectation = $expectation;
 
         return $this;
+    }
+
+    /**
+     * Returns the diagnostics for this assertion.
+     */
+    protected function diagnostics(): array
+    {
+        return [
+            'operator'    => $this->comparison,
+            'subject'     => $this->subject,
+            'expectation' => $this->expectation,
+        ];
     }
 }
