@@ -61,7 +61,7 @@ function blank()
 
 function yaml(array $params)
 {
-    $spacer = str_repeat(' ', 4);
+    $spacer = str_repeat(' ', 3);
 
     write($spacer, '---');
     foreach ($params as $key => $value) {
